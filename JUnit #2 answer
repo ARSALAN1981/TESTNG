@@ -11,7 +11,7 @@ public class TechFiosSingleList {
   public void testTechFiosSingleList() {
   
     // setting path from my pc
-    System.setProperty("webdriver.chrome.driver", "C:/Users/syars/Downloads/chromedriver_win32/chromedriver.exe");
+    System.setProperty("webdriver.chrome.driver", "C:/Users/syars/Downloads/chromedriver_win/chromedriver.exe");
 
     // instance
     WebDriver driver = new ChromeDriver();
