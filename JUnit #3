@@ -1,0 +1,40 @@
+import org.junit.Assert;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class AllListItems {
+
+  @Test
+  public void testAllListItems() {
+  
+    // set path from my computer
+    System.setProperty("webdriver.chrome.driver", "C:/Users/syars/Downloads/chromedriver_win32/chromedriver.exe");
+
+    // Create a new instance
+    WebDriver driver = new ChromeDriver();
+
+    // goto techfios page
+    driver.get("http://techfios.com/test/101/");
+
+    // Toggle All
+    WebElement toggleAllCheckbox = driver.findElement(By.id("toggle-all"));
+    toggleAllCheckbox.click();
+
+    // Remove button
+    WebElement removeButton = driver.findElement(By.xpath("//input[@value='Remove']"));
+    removeButton.click();
+
+    // figure out all checkboxs
+    // You may need to adjust the CSS selector based on the HTML structure of the page
+    List<WebElement> listItemCheckboxes = driver.findElements(By.cssSelector("input[type='checkbox'][name='todo[0][]']"));
+
+    // this is where we verify 
+    Assert.assertEquals(0, listItemCheckboxes.size());
+
+    // quits browser
+    driver.quit();
+  }
+}
