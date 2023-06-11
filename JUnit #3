@@ -5,10 +5,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class AllListItems {
+public class TechFiosAllListItems {
 
   @Test
-  public void testAllListItems() {
+  public void testTechFiosAllListItems() {
   
     // set path from my computer
     System.setProperty("webdriver.chrome.driver", "C:/Users/syars/Downloads/chromedriver_win32/chromedriver.exe");
