@@ -1,0 +1,49 @@
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.By;
+import org.testng.Assert;
+import org.testng.annotations.*;
+
+public class CategoryTest {
+    WebDriver driver;
+
+    @BeforeTest
+    public void setUp() {
+        // Set the path to the ChromeDriver executable
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\syars\\Downloads\\chromedriver_win32\\chromedriver.exe");
+        
+        // Initialize ChromeDriver
+        driver = new ChromeDriver();
+        
+        // Maximize the browser window
+        driver.manage().window().maximize();
+    }
+
+    @Test
+    public void testAddCategory() {
+    
+        //  techfios index landing page
+        driver.get("http://techfios.com/test/101/");
+        
+        // this clicks "add category"
+        driver.findElement(By.linkText("Add Category")).click();
+        
+        // Category Name
+        driver.findElement(By.name("categorydata")).sendKeys("New Category");
+        
+        // Click submit
+        driver.findElement(By.name("submit")).click();
+        
+        // displayed on page or not
+        boolean isCategoryDisplayed = driver.findElement(By.xpath("//td[text()='New Category']")).isDisplayed();
+        
+        // using assert to display category 
+        Assert.assertTrue(isCategoryDisplayed, "Failed to add and display the category");
+    }
+
+    @AfterTest
+    public void tearDown() {
+        // Close
+        driver.quit();
+    }
+}
