@@ -1,0 +1,43 @@
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.By;
+import org.testng.Assert;
+import org.testng.annotations.*;
+
+public class CategoryTest {
+    WebDriver driver;
+
+    @BeforeTest
+    public void setUp() {
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\syars\\Downloads\\chromedriver_win32\\chromedriver.exe");
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+    }
+
+    @Test
+    public void testAddDuplicateCategory() {
+        driver.get("https://techfios.com/test/101/index.php");
+        
+        // Find and click add button
+        driver.findElement(By.linkText("Add Category")).click();
+        
+        // Enters Category Name for testing
+        String categoryName = "New Category";
+        driver.findElement(By.name("categorydata")).sendKeys(categoryName);
+        
+        // clickin submit 
+        driver.findElement(By.name("submit")).click();
+        
+        // checking duplicates
+        String expectedErrorMessage = "The category you want to add already exists: " + categoryName;
+        String actualErrorMessage = driver.findElement(By.xpath("//span[@class='help-block']")).getText();
+        
+        // show correct error message
+        Assert.assertEquals(actualErrorMessage, expectedErrorMessage, "Incorrect error message for duplicate category");
+    }
+
+    @AfterTest
+    public void tearDown() {
+        driver.quit();
+    }
+}
