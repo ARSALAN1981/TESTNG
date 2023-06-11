@@ -11,7 +11,7 @@ public class TechFiosCheckBox {
   public void testToggleAllCheckbox() {
   
     // path to chromedriver
-    System.setProperty("webdriver.chrome.driver", "C:\Users\syars\Downloads\chromedriver.exe");
+    System.setProperty("webdriver.chrome.driver", "C:/Users/syars/Downloads/chromedriver_win/chromedriver.exe");
     
     // instance for driver
     WebDriver driver = new ChromeDriver();
