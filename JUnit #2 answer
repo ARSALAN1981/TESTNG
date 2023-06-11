@@ -1,0 +1,39 @@
+import org.junit.Assert;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class RemovingSingleList {
+
+  @Test
+  public void testRemovingSingleList() {
+  
+    // setting path from my pc
+    System.setProperty("webdriver.chrome.driver", "C:/Users/syars/Downloads/chromedriver_win32/chromedriver.exe");
+
+    // instance
+    WebDriver driver = new ChromeDriver();
+
+    // techfios test page
+    driver.get("https://techfios.com/test/101/");
+
+    // checkbox
+    WebElement listItemCheckbox = driver.findElement(By.xpath("//input[@name='allbox']//following::input[@type='checkbox'][1]"));
+    listItemCheckbox.click();
+
+    // xpath for removebutton
+    WebElement removeButton = driver.findElement(By.xpath("//input[@value='Remove']"));
+    removeButton.click();
+    
+    // find elements
+    List<WebElement> listItemCheckboxes = driver.findElements(By.xpath("//input[@name='todo[0][]']"));
+
+    // Verify that the list item checkbox is no longer present
+    Assert.assertEquals(0, listItemCheckboxes.size());
+
+    // terminates browsers 
+    driver.quit();
+  }
+}
