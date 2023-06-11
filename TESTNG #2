@@ -9,7 +9,7 @@ public class CategoryTest {
 
     @BeforeTest
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\syars\\Downloads\\chromedriver_win32\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\syars\\Downloads\\chromedriver_win\\chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
     }
