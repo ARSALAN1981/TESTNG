@@ -9,13 +9,14 @@ public class CategoryTest {
 
     @BeforeTest
     public void setUp() {
-        // Set the path to the ChromeDriver executable
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\syars\\Downloads\\chromedriver_win32\\chromedriver.exe");
+    
+        // setting path from my computer
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\syars\\Downloads\\chromedriver_win\\chromedriver.exe");
         
-        // Initialize ChromeDriver
+        // chromedriver
         driver = new ChromeDriver();
         
-        // Maximize the browser window
+        // browser size
         driver.manage().window().maximize();
     }
 
