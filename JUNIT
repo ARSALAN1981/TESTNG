@@ -1,0 +1,37 @@
+import org.junit.Assert;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class TechFiosCheckBox {
+  
+  @Test
+  public void testToggleAllCheckbox() {
+  
+    // path to chromedriver
+    System.setProperty("webdriver.chrome.driver", "C:\Users\syars\Downloads\chromedriver.exe");
+    
+    // instance for driver
+    WebDriver driver = new ChromeDriver();
+    
+    // go to techfios page
+    driver.get("http://techfios.com/test/101/");
+    
+    // click toggleAll to check if it works
+    WebElement toggleAllCheckbox = driver.findElement(By.id("toggle-all"));
+    toggleAllCheckbox.click();
+    
+    // list items / html 
+    List<WebElement> listItemCheckboxes = driver.findElements(By.cssSelector("input[type='checkbox'][name='todo[0][]']"));
+    
+    // verify boxes are on
+    for (WebElement checkbox : listItemCheckboxes) {
+      Assert.assertTrue(checkbox.isSelected());
+    }
+    
+    // quits browser
+    driver.quit();
+  }
+}
