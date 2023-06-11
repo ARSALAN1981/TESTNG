@@ -1,0 +1,48 @@
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+import org.testng.annotations.*;
+
+public class CategoryTest {
+    WebDriver driver;
+
+    @BeforeTest
+    public void setUp() {
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\syars\\Downloads\\chromedriver_win\\chromedriver.exe");
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+    }
+
+    @Test
+    public void testMonthDropdownOptions() {
+        driver.get("https://techfios.com/test/101/index.php");
+        
+        // add category button (we already know by now)
+        driver.findElement(By.linkText("Add Category")).click();
+        
+        // Select object for which month you want
+        Select monthDropdown = new Select(driver.findElement(By.name("due_month")));
+        
+        // Collects all data from dropdown menu
+        java.util.List<WebElement> options = monthDropdown.getOptions();
+        
+        // each month that exists or is listed
+        String[] expectedMonths = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+        
+        // # of options matches or not
+        Assert.assertEquals(options.size(), expectedMonths.length, "Incorrect number of options in the month dropdown");
+        
+        // making sure each option is matching
+        for (int i = 0; i < options.size(); i++) {
+            String actualMonth = options.get(i).getText();
+            Assert.assertEquals(actualMonth, expectedMonths[i], "Incorrect month option at index " + i);
+        }
+    }
+
+    @AfterTest
+    public void tearDown() {
+        driver.quit();
+    }
+}
